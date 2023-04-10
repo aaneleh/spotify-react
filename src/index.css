@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --scale: 1.333;
+    --base: 16;
+    --dark: #000000;
+    --light: #ffffff;
+  }
+  html {
+    background: var(--dark);
+  }
+  @media (prefers-color-scheme: light) {
+    html {
+      background: var(--light);
+    }
+  }
+  @media screen and (max-width: 500px) {
+    :root {
+      --scale: 1.250;
+    }
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100svh;
+  }
+}
