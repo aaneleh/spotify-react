@@ -1,0 +1,54 @@
+[
+    { 
+        "titulo": "Between Days",
+        "artista": "Far Caspian",
+        "imagem": "musica_1.png",
+        "ano": "2018",
+        "musicas": [
+            {
+                "titulo": "Between Days",
+                "duracao": 3.1
+            },
+            {
+                "titulo": "Blue",
+                "duracao": 3.3
+            },
+            {
+                "titulo": "Finding My Way Home",
+                "duracao": 4.1
+            }
+        ]
+    },
+    { 
+        "titulo": "vertigo",
+        "artista": "EDEN",
+        "imagem": "musica_3.png",
+        "ano": "2018",
+        "musicas": [
+            {
+                "titulo": "take care",
+                "duracao": 3.2
+            },
+            {
+                "titulo": "icarus",
+                "duracao": 6.8
+            },
+            {
+                "titulo": "gold",
+                "duracao": 3.1
+            }
+        ]
+    },
+    { 
+        "titulo": "Today",
+        "artista": "Far Caspian",
+        "imagem": "musica_2.png",
+        "ano": "2020",
+        "musicas": [
+            {
+                "titulo": "Today",
+                "duracao": 2.8
+            }
+        ]
+    } 
+]

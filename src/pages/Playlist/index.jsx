@@ -1,8 +1,52 @@
 import React from 'react';
 import * as BsIcons from 'react-icons/bs'
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import PlaylistsJson from '../../data/playlists.json';
+import AlbunsJson from '../../data/albuns.json';
+
 
 function Playlist() {
+
+    const { playlistId } = useParams()
+    const playlistSelecionada = PlaylistsJson[playlistId]
+
+    function getTituloAlbum(idAlbum){
+        return AlbunsJson[idAlbum].titulo
+    }
+    function getArtistaAlbum(idAlbum){
+        return AlbunsJson[idAlbum].artista
+    }
+    function getImagemAlbum(idAlbum){
+        return AlbunsJson[idAlbum].imagem
+    }
+    function getTituloMusica(idAlbum, idMusica){
+        return AlbunsJson[idAlbum].musicas[idMusica].titulo
+    }
+    function getDuracaoFloatMusica(idAlbum, idMusica){
+        return AlbunsJson[idAlbum].musicas[idMusica].duracao
+    }
+    function getDuracaoMusica(idAlbum, idMusica){
+        const duracao = AlbunsJson[idAlbum].musicas[idMusica].duracao*60 
+        const minutos =  Math.floor(duracao/60)
+        const segundos = Math.round(duracao%60)
+        return segundos >= 10 ?
+            minutos+":"+segundos   :   minutos+":0"+segundos
+    }
+
+    let duracaoPlaylist = 0
+    playlistSelecionada.musicas.map((musica, i) => (
+        duracaoPlaylist += getDuracaoFloatMusica(musica.idAlbum, musica.idMusica)
+    ))
+    if (duracaoPlaylist > 60) {
+        const hora = Math.floor(duracaoPlaylist/60)
+        const minutos = Math.round(duracaoPlaylist%60)
+        duracaoPlaylist = hora + "h " + minutos + "min"
+    } else {
+        const minutos = Math.floor( (duracaoPlaylist*60) /60) 
+        const segundos = Math.round( (duracaoPlaylist*60) %60)
+        duracaoPlaylist = minutos + "min " + segundos + "s" 
+    }
+
     return (
         <div className='overflow-hidden bg-neutral-900 text-neutral-50 p-4 pt-32'>
 
@@ -11,8 +55,8 @@ function Playlist() {
                     <img src="./../src/assets/playlist_2.png" alt="" />
                 </div>
                 <div className='flex flex-col gap-4'>
-                    <h2 className='text-6xl font-bold'>This is Far Caspian</h2>
-                    <p>24 músicas, 1h 23min</p>
+                    <h2 className='text-6xl font-bold'> {playlistSelecionada.titulo} </h2>
+                    <p> {playlistSelecionada.musicas.length} músicas, {duracaoPlaylist}</p> 
                 </div>
             </header>
 
@@ -30,65 +74,27 @@ function Playlist() {
                     <BsIcons.BsClock/>
                 </header>
 
-                <div className='grid grid-cols-8 gap-4 items-center'>
-                    <p>1</p>
-                    <div className='flex col-span-3'>
-                        <div className='w-16 pr-2'>
-                            <img src="./../src/assets/musica_1.png" alt="" />
+                { playlistSelecionada.musicas.map( (obj, i) => (
+                    <div className='grid grid-cols-8 gap-4 items-center' key={i}>
+                        <p>{i + 1}</p>
+                        <div className='flex col-span-3'>
+                            <div className='w-16 pr-2'>
+                                <img src={"./../src/assets/"+ getImagemAlbum(obj.idAlbum)} />
+                            </div>
+                            <div className='grid content-center'>
+                                <p> {getTituloMusica(obj.idAlbum, obj.idMusica)} </p>
+                                <p className='text-neutral-400'> {getArtistaAlbum(obj.idAlbum)} </p>
+                            </div>
                         </div>
-                        <div className='grid content-center'>
-                            <p>Blue</p>
-                            <p className='text-neutral-400'>Far Caspian</p>
+                        <div className='flex justify-between items-center col-span-3'>
+                            <Link to={"/album/"+obj.idAlbum} className='hover:underline'>
+                                <p> {getTituloAlbum(obj.idAlbum)} </p>
+                            </Link>
+                            <BsIcons.BsHeart/> {/* <BsIcons.BsHeart/> */}
                         </div>
+                        <p> {getDuracaoMusica(obj.idAlbum, obj.idMusica)} </p>
                     </div>
-                    <div className='flex justify-between items-center col-span-3'>
-                        <Link to="/album/1" className='hover:underline'>
-                            <p>Between Days</p>
-                        </Link>
-                        <BsIcons.BsHeart/> {/* <BsIcons.BsHeart/> */}
-                    </div>
-                    <p>3:26</p>
-                </div>
-
-                <div className='grid grid-cols-8 gap-4 items-center'>
-                    <p>2</p>
-                    <div className='flex col-span-3'>
-                        <div className='w-16 pr-2'>
-                            <img src="./../src/assets/musica_2.png" alt="" />
-                        </div>
-                        <div className='grid content-center'>
-                            <p>Today</p>
-                            <p className='text-neutral-400'>Far Caspian</p>
-                        </div>
-                    </div>
-                    <div className='flex justify-between items-center col-span-3'>
-                        <Link to="/album/2" className='hover:underline'>
-                            <p>Today</p>
-                        </Link>
-                        <BsIcons.BsHeart/> {/* <BsIcons.BsHeart/> */}
-                    </div>
-                    <p>2:46</p>
-                </div>
-
-                <div className='grid grid-cols-8 gap-4 items-center'>
-                    <p>3</p>
-                    <div className='flex col-span-3'>
-                        <div className='w-16 pr-2'>
-                            <img src="./../src/assets/musica_1.png" alt="" />
-                        </div>
-                        <div className='grid content-center'>
-                            <p>Blue</p>
-                            <p className='text-neutral-400'>Far Caspian</p>
-                        </div>
-                    </div>
-                    <div className='flex justify-between items-center col-span-3'>
-                        <Link to="/album/1" className='hover:underline'>
-                            <p>Between Days</p>
-                        </Link>
-                        <BsIcons.BsHeart/> {/* <BsIcons.BsHeart/> */}
-                    </div>
-                    <p>3:26</p>
-                </div>
+                ) )}
 
             </div>
         </div>

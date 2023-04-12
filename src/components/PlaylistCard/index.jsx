@@ -7,7 +7,7 @@ function PlaylistCard(props) {
             <div className="image-container">
                 <img src={"/src/assets/"+props.img} alt={"Capa do album '"+props.nome+"'"} />
             </div>
-            <h3 className="pt-4 text-lg">{props.nome}</h3>
+            <h3 className="pt-4 text-lg">{props.titulo}</h3>
             <p  className="text-neutral-400">{props.quantidade} músicas</p>
         </Link>
     )

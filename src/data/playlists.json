@@ -1,0 +1,59 @@
+[
+    { 
+        "titulo": "Músicas Curtidas",
+        "imagem": "playlist_1.png",
+        "musicas": [
+            {
+                "idAlbum": 0,
+                "idMusica": 0
+            },
+            {
+                "idAlbum": 2,
+                "idMusica": 0
+            },
+            {
+                "idAlbum": 1,
+                "idMusica": 2
+            },
+            {
+                "idAlbum": 0,
+                "idMusica": 2
+            },
+            {
+                "idAlbum": 1,
+                "idMusica": 0
+            },
+            {
+                "idAlbum": 1,
+                "idMusica": 1
+            }
+        ],
+        "ultimaReproducao": "2023-04-12T16:45:20.000Z",
+        "vezesReproduzidas": 4
+    },
+    
+    { 
+        "titulo": "This is Far Caspian",
+        "imagem": "playlist_2.png",
+        "musicas": [
+            {
+                "idAlbum": 0,
+                "idMusica": 0
+            },
+            {
+                "idAlbum": 0,
+                "idMusica": 1
+            },
+            {
+                "idAlbum": 0,
+                "idMusica": 2
+            },
+            {
+                "idAlbum": 2,
+                "idMusica": 0
+            }
+        ],
+        "ultimaReproducao": "2023-04-11T22:37:50.000Z",
+        "vezesReproduzidas": 12
+    }    
+]
